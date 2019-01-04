@@ -131,7 +131,9 @@ def bAbI_data_load(path):
     return data_p
 # In[ ]:
 """7"""
-train_data = bAbI_data_load('/home/nazmul/Desktop/deep/dataset/bAbI/en-10k/qa5_three-arg-relations_train.txt')
+projectDir = os.path.dirname(os.path.realpath('__file__'))
+trainDir = projectDir + '/dataset/bAbI/en-10k/qa5_three-arg-relations_train.txt';
+train_data = bAbI_data_load(trainDir)
 # In[ ]:
 """8"""
 train_data[0]
@@ -343,7 +345,9 @@ def pad_to_fact(fact, x_to_ix): # this is for inference
     return fact, fact_mask            
 # In[ ]:
 """19"""
-test_data = bAbI_data_load('/home/nazmul/Desktop/deep/dataset/bAbI/en-10k/qa5_three-arg-relations_test.txt')
+projectDir = os.path.dirname(os.path.realpath('__file__'))
+testDir = projectDir + '/dataset/bAbI/en-10k/qa5_three-arg-relations_test.txt';
+test_data = bAbI_data_load(testDir)
 # In[ ]:
 """20"""
 for t in test_data:
