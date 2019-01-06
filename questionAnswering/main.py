@@ -30,6 +30,7 @@ random.seed(1024)
 
 USE_CUDA = torch.cuda.is_available()
 gpus = [0]
+print(USE_CUDA)
 #torch.cuda.set_device(gpus[0])
 
 FloatTensor = torch.cuda.FloatTensor if USE_CUDA else torch.FloatTensor
@@ -309,12 +310,11 @@ for epoch in range(EPOCH):
         
     for i,batch in enumerate(getBatch(BATCH_SIZE, train_data)):
         facts, fact_masks, questions, question_masks, answers = pad_to_batch(batch, word2index)
-        
         model.zero_grad()
         pred = model(facts, fact_masks, questions, question_masks, answers.size(1), NUM_EPISODE, True)
         loss = loss_function(pred, answers.view(-1))
-       
-        losses.append(loss.data.tolist()[0])
+
+        losses.append(loss.data.tolist())
         
         loss.backward()
         optimizer.step()
